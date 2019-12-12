@@ -49,12 +49,13 @@ class ParseOpCode(object):
         for i, j in dict_var.items():
             self.il[i] = j
 
+    def reset(self):
+        self.il = self.__reset.copy()
+
     def part_1(self):
         self.set_values({1: 12, 2: 2})
         return self.calculate()
     
-    def reset(self):
-        self.il = self.__reset.copy()
 
     def part_2(self, seek):
         for i in range(100):
