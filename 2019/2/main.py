@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-import sys
+
 
 def print_csl(list_obj):
     print(str(list_obj).strip("[]").replace(" ", ""))
+
 
 class ParseOpCode(object):
     def __init__(self, input_file, ):
@@ -28,7 +29,7 @@ class ParseOpCode(object):
         for pos in range(len(self.il)):
             try:
                 op_code_set = self.il[pos], self.il[pos + 1], self.il[pos + 2], self.il[pos + 3]
-            except:
+            except IndexError:
                 break
             if self.__consume:
                 self.__consume -= 1
@@ -44,7 +45,7 @@ class ParseOpCode(object):
                 raise SyntaxError("your opcode is bad: " + str(op_code_set))
             pos += 1
         return self.il
-    
+
     def set_values(self, dict_var):
         for i, j in dict_var.items():
             self.il[i] = j
@@ -55,7 +56,6 @@ class ParseOpCode(object):
     def part_1(self):
         self.set_values({1: 12, 2: 2})
         return self.calculate()
-    
 
     def part_2(self, seek):
         for i in range(100):
@@ -69,11 +69,8 @@ class ParseOpCode(object):
                     return i, j
 
 
-            
-
-
 if __name__ == "__main__":
-    #aoc_input = ParseOpCode("./input")
-    #print_csl(aoc_input.calculate())
+    # aoc_input = ParseOpCode("./input")
+    # print_csl(aoc_input.calculate())
     bla = ParseOpCode("./input")
     print(bla.part_2(19690720))
